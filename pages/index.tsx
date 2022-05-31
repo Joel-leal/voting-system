@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import { Heading, Link, Text } from '@chakra-ui/core'
+import { Heading, Link, Text, Box } from '@chakra-ui/core'
+
 
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <Box>
       <Head>
         <title>Creating App of Voting</title>
         <link rel="icon" href="/favicon.ico" />
@@ -19,8 +20,6 @@ const Home: NextPage = () => {
           <Link color="#8e407a" href="https://www.notion.so/podcodar/VS-42132534db42406e9e9fe1e6defa0ab9">Wiki.</Link>
         </Text>
       </main>
-    </div>
-  );
-};
-
-export default Home;
+    </Box>
+  )
+}
