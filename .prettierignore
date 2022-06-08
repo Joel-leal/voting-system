@@ -38,6 +38,7 @@ yarn-error.log*
 .prettier*
 .editorconfig
 .gitignore
+.husky/
 
 # images
 images
