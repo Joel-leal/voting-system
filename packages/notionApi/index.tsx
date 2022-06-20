@@ -5,7 +5,6 @@ import {
   ICreateResultPage,
 } from '@packages/notionApi/templates/resultPage';
 
-// Initializing a client
 const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
 });
@@ -26,6 +25,11 @@ export const getAvaiableElections = async () => {
 
 export const postElectionResult = async (props: ICreateResultPage) => {
   const newPage = createResultPage({ ...props });
-  const result = await notion.pages.create(newPage);
-  return result;
+  // TODO(Frattezi): The typing here is correct, but since the notion client do not
+  // export it's types we cannot avoid the type error below.
+  //
+  // Error: Property 'page_id' is missing in type.
+  // Depends on notion-client-sdk issue 280 https://github.com/makenotion/notion-sdk-js/issues/280
+  // @ts-ignore
+  return await notion.pages.create(newPage);
 };
