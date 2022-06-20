@@ -1,12 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { getAvaiableElections } from '@packages/notionApi';
 
-type Data = {
-  name: string;
-};
+import type { NextApiResponse } from 'next';
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>,
-) {
-  res.status(200).json({ name: 'John Doe' });
+export default async function handler(res: NextApiResponse) {
+  const results = await getAvaiableElections();
+  res.status(200).json(results);
 }
