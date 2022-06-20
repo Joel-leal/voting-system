@@ -1,29 +1,4 @@
-export type Party = {
-  name: string;
-  members: string[];
-};
-
-export interface ICreateResultPage {
-  database_id: string;
-  election_name: string;
-  election_id: string;
-  winner_party: Party;
-  looser_party: Party;
-}
-
-const cadidateTemplate = (candidate_name: string) => ({
-  type: 'bulleted_list_item',
-  bulleted_list_item: {
-    rich_text: [
-      {
-        type: 'text',
-        text: {
-          content: `${candidate_name}`,
-        },
-      },
-    ],
-  },
-});
+import { CreateResultPage } from '@packages/entities/notion';
 
 export function createResultPage({
   database_id,
@@ -31,12 +6,12 @@ export function createResultPage({
   election_id,
   winner_party,
   looser_party,
-}: ICreateResultPage) {
-  const winning_members = winner_party.members.map((member_name) =>
-    cadidateTemplate(member_name),
+}: CreateResultPage) {
+  const winning_members_blocks = winner_party.members.map((member_name) =>
+    createCandidateBlocks(member_name),
   );
-  const looser_members = looser_party.members.map((member_name) =>
-    cadidateTemplate(member_name),
+  const looser_members_blocks = looser_party.members.map((member_name) =>
+    createCandidateBlocks(member_name),
   );
 
   return {
@@ -104,7 +79,7 @@ export function createResultPage({
           color: 'default',
         },
       },
-      ...winning_members,
+      ...winning_members_blocks,
       {
         object: 'block',
         type: 'divider',
@@ -150,7 +125,21 @@ export function createResultPage({
           color: 'default',
         },
       },
-      ...looser_members,
+      ...looser_members_blocks,
     ],
   };
 }
+
+const createCandidateBlocks = (candidate_name: string) => ({
+  type: 'bulleted_list_item',
+  bulleted_list_item: {
+    rich_text: [
+      {
+        type: 'text',
+        text: {
+          content: `${candidate_name}`,
+        },
+      },
+    ],
+  },
+});
