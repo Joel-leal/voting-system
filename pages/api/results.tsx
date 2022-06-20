@@ -1,4 +1,4 @@
-import { postElectionResult } from '@packages/notionApi';
+import { postElectionResult } from '@packages/notion';
 import { CreateElectionResultResponse } from '@packages/entities/notion';
 
 import type { NextApiRequest, NextApiResponse } from 'next';

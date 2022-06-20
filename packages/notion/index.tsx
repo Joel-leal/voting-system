@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 
-import { createResultPage } from '@packages/notionApi/templates/resultPage';
+import { createResultPage } from '@packages/notion/templates/result-page';
 import { CreateResultPage } from '@packages/entities/notion';
 
 const notion = new Client({

@@ -1,4 +1,4 @@
-import { getAvaiableElections } from '@packages/notionApi';
+import { getAvaiableElections } from '@packages/notion';
 
 import type { NextApiResponse } from 'next';
 
