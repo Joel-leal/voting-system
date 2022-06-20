@@ -18,7 +18,19 @@ export const getAvaiableElections = async (databaseId: string) => {
     },
   });
 
-  return { next_cursor, results };
+  const electionPages = results.map((electionPage) => {
+    if (
+      'properties' in electionPage &&
+      'title' in electionPage.properties.Name
+    ) {
+      return {
+        electionId: electionPage.id,
+        electionName: electionPage.properties.Name.title[0].plain_text,
+      };
+    }
+  });
+
+  return { next_cursor, results: electionPages };
 };
 
 export const postElectionResult = async (pageConfig: CreateResultPage) => {
