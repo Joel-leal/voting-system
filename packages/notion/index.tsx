@@ -7,9 +7,9 @@ const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
 });
 
-export const getAvaiableElections = async () => {
+export const getAvaiableElections = async (databaseId: string) => {
   const { results, next_cursor } = await notion.databases.query({
-    database_id: '5377b54f64d342c38f417574f4e50789',
+    database_id: databaseId,
     filter: {
       property: 'Status',
       select: {
