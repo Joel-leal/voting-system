@@ -1,9 +1,7 @@
 import { Client } from '@notionhq/client';
 
-import {
-  createResultPage,
-  ICreateResultPage,
-} from '@packages/notionApi/templates/resultPage';
+import { createResultPage } from '@packages/notionApi/templates/resultPage';
+import { CreateResultPage } from '@packages/entities/notion';
 
 const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
@@ -23,7 +21,7 @@ export const getAvaiableElections = async () => {
   return { next_cursor, results };
 };
 
-export const postElectionResult = async (props: ICreateResultPage) => {
+export const postElectionResult = async (props: CreateResultPage) => {
   const newPage = createResultPage({ ...props });
 
   // TODO(Frattezi): The typing here is correct, but since the notion client do not
