@@ -21,8 +21,8 @@ export const getAvaiableElections = async () => {
   return { next_cursor, results };
 };
 
-export const postElectionResult = async (props: CreateResultPage) => {
-  const newPage = createResultPage({ ...props });
+export const postElectionResult = async (pageConfig: CreateResultPage) => {
+  const newPage = createResultPage({ ...pageConfig });
 
   // TODO(Frattezi): The typing here is correct, but since the notion client do not
   // export it's types we cannot avoid the type error below.
