@@ -1,23 +1,23 @@
 import { CreateResultPage } from '@packages/entities/notion';
 
 export function createResultPage({
-  database_id,
-  election_name,
-  election_id,
-  winner_party,
-  looser_party,
+  databaseId,
+  electionName,
+  electionId,
+  winnerParty,
+  looserParty,
 }: CreateResultPage) {
-  const winning_members_blocks = winner_party.members.map((member_name) =>
+  const winningMemberBlocks = winnerParty.members.map((member_name) =>
     createCandidateBlocks(member_name),
   );
-  const looser_members_blocks = looser_party.members.map((member_name) =>
+  const looserMemberBlocks = looserParty.members.map((member_name) =>
     createCandidateBlocks(member_name),
   );
 
   return {
     parent: {
       type: 'database_id',
-      database_id: `${database_id}`,
+      database_id: `${databaseId}`,
     },
     icon: {
       type: 'emoji',
@@ -28,14 +28,14 @@ export function createResultPage({
         title: [
           {
             text: {
-              content: `Resultado - ${election_name}`,
+              content: `Resultado - ${electionName}`,
             },
           },
         ],
       },
       Eleições: {
         type: 'relation',
-        relation: [{ id: `${election_id}` }],
+        relation: [{ id: `${electionId}` }],
       },
     },
     children: [
@@ -47,7 +47,7 @@ export function createResultPage({
             {
               type: 'text',
               text: {
-                content: `Partido Vencedor - ${winner_party.name}`,
+                content: `Partido Vencedor - ${winnerParty.name}`,
                 link: null,
               },
               annotations: {
@@ -79,7 +79,7 @@ export function createResultPage({
           color: 'default',
         },
       },
-      ...winning_members_blocks,
+      ...winningMemberBlocks,
       {
         object: 'block',
         type: 'divider',
@@ -93,7 +93,7 @@ export function createResultPage({
             {
               type: 'text',
               text: {
-                content: `Segundo colocado - ${looser_party.name}`,
+                content: `Segundo colocado - ${looserParty.name}`,
                 link: null,
               },
               annotations: {
@@ -125,7 +125,7 @@ export function createResultPage({
           color: 'default',
         },
       },
-      ...looser_members_blocks,
+      ...looserMemberBlocks,
     ],
   };
 }

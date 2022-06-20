@@ -1,6 +1,6 @@
 export interface CreateElectionResultResponse {
   message: string;
-  page_id?: string;
+  pageId?: string;
 }
 interface Party {
   name: string;
@@ -8,9 +8,9 @@ interface Party {
 }
 
 export interface CreateResultPage {
-  database_id: string;
-  election_name: string;
-  election_id: string;
-  winner_party: Party;
-  looser_party: Party;
+  databaseId: string;
+  electionName: string;
+  electionId: string;
+  winnerParty: Party;
+  looserParty: Party;
 }

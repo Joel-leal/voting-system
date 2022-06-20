@@ -13,8 +13,13 @@ export default async function handler(
   if (req.method !== 'POST')
     return res.status(405).json({ message: 'Only POST requests allowed' });
 
-  const page_params = req.body as CreateResultPage;
-  const page_id = await postElectionResult(page_params);
+  const pageParams = req.body;
+  const pageConfig = {
+    ...req.query,
+    ...pageParams,
+  } as CreateResultPage;
 
-  res.status(200).json({ message: 'created', page_id: page_id });
+  const pageId = await postElectionResult(pageConfig);
+
+  res.status(200).json({ message: 'created', pageId: pageId });
 }
