@@ -1,4 +1,4 @@
-import { getAvaiableElections } from '@packages/notion';
+import { getElectionPage } from '@packages/notion';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { databaseId } = req.query;
-  const results = await getAvaiableElections(databaseId as string);
+  const { pageId } = req.query;
+  const results = await getElectionPage(pageId as string);
   res.status(200).json(results);
 }
