@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client';
 
-import { extractPagesFromQuery } from '@packages/utils/notion';
+import { extractPagesFromQuery } from '@packages/notion/utils';
 import { AvaiableElectionsReturn } from '@packages/entities/notion';
 
 const notion = new Client({
