@@ -1,5 +1,5 @@
 import { AvaiableElectionsReturn } from '@packages/entities/notion';
-import { getAvaiableElections } from '@packages/notion-client';
+import { getAvaiableElections } from '@packages/notion/client';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
