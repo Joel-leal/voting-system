@@ -1,7 +1,11 @@
 import { Client } from '@notionhq/client';
 
+import {
+  AvaiableElectionsReturn,
+  CreateResultPage,
+} from '@packages/entities/notion';
+import { createResultPageFromTemplate } from '@packages/notion/templates';
 import { extractPagesFromQuery } from '@packages/notion/utils';
-import { AvaiableElectionsReturn } from '@packages/entities/notion';
 
 const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
@@ -27,3 +31,10 @@ export async function getAvaiableElections(
     message: `${electionPages.length} pages found`,
   };
 }
+
+export const postElectionResult = async (pageConfig: CreateResultPage) => {
+  const newPage = createResultPageFromTemplate(pageConfig);
+  const result = await notion.pages.create(newPage);
+
+  return result.id;
+};
