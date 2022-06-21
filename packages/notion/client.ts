@@ -1,11 +1,11 @@
 import { Client } from '@notionhq/client';
 
 import {
-  AvaiableElectionsReturn,
   CreateResultPage,
+  AvaiableElectionsReturn,
 } from '@packages/entities/notion';
-import { createResultPageFromTemplate } from '@packages/notion/templates';
 import { extractPagesFromQuery } from '@packages/notion/utils';
+import { createResultPageFromTemplate } from '@packages/notion/templates';
 
 const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
