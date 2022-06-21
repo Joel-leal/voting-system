@@ -1,33 +1,31 @@
+import { Heading, Box, Flex, Select } from '@chakra-ui/react';
 import Head from 'next/head';
-import { Heading, Link, Text, Box } from '@chakra-ui/react';
 
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
   return (
-    <Box>
-      <Head>
-        <title>Creating App of Voting</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <Heading as="h1" size="2xl" mb="2">
-          Welcome to{' '}
-          <Link color="teal.500" href="https://nextjs.org">
-            Voting-System!
-          </Link>
-        </Heading>
-        <Text>
-          This is another a project podCodar{' '}
-          <Link
-            color="#8e407a"
-            href="https://www.notion.so/podcodar/VS-42132534db42406e9e9fe1e6defa0ab9"
-          >
-            Wiki.
-          </Link>
-        </Text>
-      </main>
-    </Box>
+    <Flex h="100vh" w="100vw" alignItems="center" justifyContent="center">
+      <Box>
+        <Head>
+          <title>Eleições 2018</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <Heading as="h1" size="2xl" mb="2">
+            Selecione uma votação{' '}
+            <Box>
+              <Select>
+                <option value="sexto-ano">Sexto-ano</option>
+                <option value="setimo-ano">Sétimo-ano</option>
+                <option value="oitavo-ano">Oitavo-ano</option>
+                <option value="nono-ano">Nono-ano</option>
+              </Select>
+            </Box>
+          </Heading>
+        </main>
+      </Box>
+    </Flex>
   );
 };
 
