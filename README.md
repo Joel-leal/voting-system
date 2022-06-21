@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Voting System
 
-## Getting Started
+This project has the objective to emulate a Brazilian automated electoral system. It uses [Notion](https://www.notion.so/) databases
+as a way for the user to create new elections and also to store election results.
 
-First, run the development server:
+## Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+To run this project locally you will need:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- A [Notion](https://www.notion.so/) account.
+- [Yarn](https://yarnpkg.com/).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Notion setup
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To fully use this project API, you need to setup 2 databases in your notion personal account and create a Notion API key.
+To help you with that, we created [this tutorial](https://www.notion.so/podcodar/Docs-7e84b843b0ee496d8f4bf3e59683072a)!
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Follow the steps to setup your local environment before running the project.
 
-## Learn More
+### Environment setup
 
-To learn more about Next.js, take a look at the following resources:
+Copy the `.env.local.example` in the same folder using the name `.env.local`. Setup it with your personal
+Notion API key.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The API uses Notion as a database, both to retrieve fresh election data and to post new election results for the user.
 
-## Deploy on Vercel
+If you want to reproduce and check the endpoints locally you can import our Postman Collection
+with this link `https://www.postman.com/collections/4ef9e3a7693171cc3b16`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+After loading it in your Postman, you only need to set the `databaseId` and `pageId` variables
+for the environment. Both you can get by checking the databases you created before.
