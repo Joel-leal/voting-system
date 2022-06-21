@@ -41,7 +41,6 @@ function _extractProperties(result: Result): LooseObject {
     });
   }
 
-  console.log(parsedResults);
   return parsedResults;
 }
 

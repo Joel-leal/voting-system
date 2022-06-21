@@ -14,6 +14,24 @@ export interface CreateElectionResultResponse {
   id?: string;
 }
 
+export interface PartyData {
+  id: string;
+  code: string;
+  name: string;
+  slug: string;
+  members: PartyMembers;
+}
+
+interface PartyMembers {
+  candidate: Candidate;
+  viceCandidate: Candidate;
+}
+
+interface Candidate {
+  name: string;
+  image: string;
+}
+
 export interface CreateResultPage {
   databaseId: string;
   electionName: string;
