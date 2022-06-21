@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<AvaiableElectionsReturn>,
 ) {
   const { databaseId } = req.query;
-  if (!(databaseId instanceof Array)) {
+  if (!Array.isArray(databaseId)) {
     const results = await getAvaiableElections(databaseId);
     return res.status(200).json(results);
   }
