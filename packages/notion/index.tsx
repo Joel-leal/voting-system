@@ -2,6 +2,7 @@ import { Client } from '@notionhq/client';
 
 import { CreateResultPage, PartieData } from '@packages/entities/notion';
 import { createResultPage } from '@packages/notion/templates/result-page';
+import { extractValues } from '@packages/utils/notion';
 
 const notion = new Client({
   auth: process.env.NEXT_PUBLIC_NOTION_API_KEY,
@@ -17,16 +18,14 @@ export const getAvaiableElections = async (databaseId: string) => {
       },
     },
   });
+
   const electionPages = results.map((electionPage) => {
-    if (
-      'properties' in electionPage &&
-      electionPage?.properties?.Name.type == 'title'
-    ) {
-      return {
-        electionId: electionPage.id,
-        electionName: electionPage.properties.Name.title[0].plain_text,
-      };
-    }
+    const test = extractValues(electionPage);
+
+    return {
+      electionId: electionPage.id,
+      electionName: test.Name,
+    };
   });
   return { next_cursor, results: electionPages };
 };
