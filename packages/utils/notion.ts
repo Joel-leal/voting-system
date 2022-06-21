@@ -1,4 +1,4 @@
-import { Title, LooseObject, Result } from '@packages/entities/notion-sdk';
+import { Title, LooseObject, Result } from '@packages/notion/sdk';
 
 export function extractPagesFromQuery(pages: Result[]) {
   const extractedPages = pages.map((page) => {
