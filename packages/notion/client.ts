@@ -65,17 +65,17 @@ const _getPartyData = async (
       party.electionId,
     );
     parties.push({
-      id: party?.electionId,
-      code: party?.code,
-      name: party?.electionName,
-      slug: party?.partySlug,
+      id: party.electionId,
+      code: party.code,
+      name: party.electionName,
+      slug: party.partySlug,
       members: {
         candidate: {
-          name: party?.candidateName,
+          name: party.candidateName,
           image: candidateImage,
         },
         viceCandidate: {
-          name: party?.viceCandidateName,
+          name: party.viceCandidateName,
           image: viceCandidateImage,
         },
       },
