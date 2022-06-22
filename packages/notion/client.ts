@@ -5,7 +5,10 @@ import {
   GetAvaiableElectionsResponse,
   PartyData,
 } from '@packages/entities/notion';
-import { extractPagesFromQuery } from '@packages/notion/utils';
+import {
+  extractPagesFromQuery,
+  extractCandidateDatabaseId,
+} from '@packages/notion/utils';
 import { createResultPageFromTemplate } from '@packages/notion/templates';
 
 const notion = new Client({
@@ -35,14 +38,7 @@ export async function getAvaiableElections(
 
 export const getElectionPage = async (pageId: string) => {
   const { results } = await notion.blocks.children.list({ block_id: pageId });
-
-  const { id: candidateDatabaseId } = results.filter(
-    (block) =>
-      'type' in block &&
-      block.type === 'child_database' &&
-      block?.child_database?.title === 'Partidos',
-  )[0];
-
+  const candidateDatabaseId = extractCandidateDatabaseId(results);
   const candidateData = await _getPartyData(candidateDatabaseId);
 
   return candidateData;

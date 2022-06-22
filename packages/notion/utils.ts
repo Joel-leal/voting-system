@@ -1,3 +1,5 @@
+import { ListBlockChildrenResponse } from '@notionhq/client/build/src/api-endpoints';
+
 import {
   Title,
   LooseObject,
@@ -5,6 +7,19 @@ import {
   RichText,
   Select,
 } from '@packages/notion/sdk';
+
+export function extractCandidateDatabaseId(
+  blockList: ListBlockChildrenResponse['results'],
+): string {
+  const { id: candidateDatabaseId } = blockList.filter(
+    (block) =>
+      'type' in block &&
+      block.type === 'child_database' &&
+      block?.child_database?.title === 'Partidos',
+  )[0];
+
+  return candidateDatabaseId;
+}
 
 export function extractPagesFromQuery(pages: Result[]) {
   const extractedPages = pages.map((page) => {
