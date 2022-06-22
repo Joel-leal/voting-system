@@ -85,10 +85,10 @@ const _getPartyData = async (
   return parties;
 };
 
-const _getCandidateImages = async (partieId: string): Promise<string[]> => {
-  const partieImages = [];
+const _getCandidateImages = async (partyId: string): Promise<string[]> => {
+  const partyImages = [];
   const { results } = await notion.blocks.children.list({
-    block_id: partieId,
+    block_id: partyId,
   });
 
   const imageBlocks = results.filter(
@@ -101,9 +101,9 @@ const _getCandidateImages = async (partieId: string): Promise<string[]> => {
       block?.type === 'image' &&
       block?.image?.type === 'file'
     ) {
-      partieImages.push(block?.image?.file?.url);
+      partyImages.push(block?.image?.file?.url);
     }
   }
 
-  return partieImages;
+  return partyImages;
 };
