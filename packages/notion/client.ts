@@ -7,6 +7,7 @@ import {
 } from '@packages/entities/notion';
 import {
   extractPagesFromQuery,
+  extractCandidateImages,
   extractCandidateDatabaseId,
 } from '@packages/notion/utils';
 import { createResultPageFromTemplate } from '@packages/notion/templates';
@@ -86,24 +87,9 @@ const _getPartyData = async (
 };
 
 const _getCandidateImages = async (partyId: string): Promise<string[]> => {
-  const partyImages = [];
   const { results } = await notion.blocks.children.list({
     block_id: partyId,
   });
 
-  const imageBlocks = results.filter(
-    (block) => 'type' in block && block.type === 'image',
-  );
-
-  for (let block of imageBlocks) {
-    if (
-      'type' in block &&
-      block?.type === 'image' &&
-      block?.image?.type === 'file'
-    ) {
-      partyImages.push(block?.image?.file?.url);
-    }
-  }
-
-  return partyImages;
+  return extractCandidateImages(results);
 };

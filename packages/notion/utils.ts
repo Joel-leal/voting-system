@@ -21,6 +21,27 @@ export function extractCandidateDatabaseId(
   return candidateDatabaseId;
 }
 
+export function extractCandidateImages(
+  blockList: ListBlockChildrenResponse['results'],
+): string[] {
+  const partyImages = [];
+  const imageBlocks = blockList.filter(
+    (block) => 'type' in block && block.type === 'image',
+  );
+
+  for (let block of imageBlocks) {
+    if (
+      'type' in block &&
+      block?.type === 'image' &&
+      block?.image?.type === 'file'
+    ) {
+      partyImages.push(block?.image?.file?.url);
+    }
+  }
+
+  return partyImages;
+}
+
 export function extractPagesFromQuery(pages: Result[]) {
   const extractedPages = pages.map((page) => {
     const pageProperties = _extractProperties(page);
