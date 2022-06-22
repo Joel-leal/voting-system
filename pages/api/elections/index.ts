@@ -1,11 +1,11 @@
-import { AvaiableElectionsReturn } from '@packages/entities/notion';
+import { GetAvaiableElectionsResponse } from '@packages/entities/notion';
 import { getAvaiableElections } from '@packages/notion/client';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<AvaiableElectionsReturn>,
+  res: NextApiResponse<GetAvaiableElectionsResponse>,
 ) {
   const { databaseId } = req.query;
   if (!Array.isArray(databaseId)) {

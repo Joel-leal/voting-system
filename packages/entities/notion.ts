@@ -1,4 +1,4 @@
-export interface AvaiableElectionsReturn {
+export interface GetAvaiableElectionsResponse {
   next_cursor?: string | null;
   results?: AvaiableElections[];
   message: string;
@@ -9,9 +9,31 @@ interface AvaiableElections {
   electionName: string;
 }
 
+export interface GetElectionPageResponse {
+  results: PartyData[];
+}
+
 export interface CreateElectionResultResponse {
   message: string;
   id?: string;
+}
+
+export interface PartyData {
+  id: string;
+  code: string;
+  name: string;
+  slug: string;
+  members: PartyMembers;
+}
+
+interface PartyMembers {
+  candidate: Candidate;
+  viceCandidate: Candidate;
+}
+
+interface Candidate {
+  name: string;
+  image: string;
 }
 
 export interface CreateResultPage {

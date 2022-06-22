@@ -11,6 +11,18 @@ export interface Title {
   id: string;
 }
 
+export interface RichText {
+  type: 'rich_text';
+  rich_text: RichTextItemResponse[];
+  id: string;
+}
+
+export interface Select {
+  type: 'select';
+  select: SelectPropertyResponse | null;
+  id: string;
+}
+
 export interface LooseObject {
   [key: string]: any;
 }
