@@ -27,7 +27,7 @@ Notion API key.
 The API uses Notion as a database, both to retrieve fresh election data and to post new election results for the user.
 
 If you want to reproduce and check the endpoints locally you can import our Postman Collection
-with this link `https://www.postman.com/collections/4ef9e3a7693171cc3b16`.
+with this link `https://www.getpostman.com/collections/0b1b920ad7fcd92280c3`.
 
 After loading it in your Postman, you only need to set the `databaseId` and `pageId` variables
 for the environment. Both you can get by checking the databases you created before.
