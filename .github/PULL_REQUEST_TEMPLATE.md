@@ -1,23 +1,23 @@
-# **Descrição**
+# **Description**
 
-(escreva aqui uma breve descriçāo das mudanças feitas e inclua screenshots caso ache necessário)
+(brief description of the changes made and include screenshots as needed)
 
-# **Mudanças**
+# **Changes**
 
-(detalhamento, se necessário)
+(list of the changes been made)
 
 - item 1
 - item 2
 
-# **Notas**
+# **Notes**
 
-(deixe algumas notas que possam ser úteis aos revisores)
+(leave here a few notes that could be useful to the reviewers)
 
 - nota 1
 - nota 2
 
-# **Tarefa da board**
+# **Board issue**
 
-(colocar aqui o número para a tarefa da board a qual este PR se refere)
+(include here the board issue number to which this PR refers to)
 
-- Closes #[numero da tarefa aqui]
+- Closes #[issue number here]
