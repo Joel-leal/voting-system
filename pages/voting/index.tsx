@@ -1,6 +1,6 @@
 import { Box, Grid } from '@chakra-ui/react';
 
-import Display from '@components/Display';
+import Display from '@packages/components/Display';
 
 import type { NextPage } from 'next';
 
