@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import type { NextPage } from 'next';
 
-const listElection = [
+const mockElections = [
   {
     electionId: '47b8e344-0243-435d-822b-4192f691f5a7',
     electionName: 'Dimensão colégio - 06',
@@ -36,7 +36,7 @@ const Home: NextPage = () => {
             py="30px"
           >
             <Select>
-              {listElection.map((voting) => (
+              {mockElections.map((voting) => (
                 <option key={voting.electionName}>{voting.electionName}</option>
               ))}
             </Select>
