@@ -1,8 +1,20 @@
+import { ChangeEvent } from 'react';
 import { FormLabel, Input } from '@chakra-ui/react';
 
 import { IConfigForm } from '@packages/entities/config-modal';
 
-export default function ConfigForm({ onChange, formState }: IConfigForm) {
+export default function ConfigForm({
+  setFormState,
+  formState,
+  initialRef,
+}: IConfigForm) {
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setFormState({
+      ...formState,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <>
       <FormLabel fontWeight="bold">Notion API Key</FormLabel>
@@ -11,6 +23,7 @@ export default function ConfigForm({ onChange, formState }: IConfigForm) {
         placeholder="Sua chave de integração Notion"
         value={formState.notionApiKey}
         onChange={onChange}
+        ref={initialRef}
       />
 
       <FormLabel fontWeight="bold" mt="4">

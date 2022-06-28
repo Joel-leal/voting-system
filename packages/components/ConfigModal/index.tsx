@@ -12,12 +12,13 @@ import {
   Link,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ChangeEvent, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import ConfigForm from '@packages/components/ConfigModal/ConfigForm';
 import { IConfigModal, FormState } from '@packages/entities/config-modal';
 
 export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
+  const initialRef = useRef(null);
   const boxBgColor = useColorModeValue('gray.100', 'gray.900');
   const [formState, setFormState] = useState<FormState>({
     notionApiKey: '',
@@ -25,26 +26,23 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
     resultsDatabaseId: '',
   });
 
-  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormState({
-      ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const onSubmmit = () => {
     console.log(formState);
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Adicione suas chaves do notion</ModalHeader>
         <ModalCloseButton />
 
         <ModalBody>
-          <ConfigForm onChange={onChangeInput} formState={formState} />
+          <ConfigForm
+            setFormState={setFormState}
+            formState={formState}
+            initialRef={initialRef}
+          />
 
           <Box bgColor={boxBgColor} padding="10px" mt="8">
             <Text fontSize="0.8em">

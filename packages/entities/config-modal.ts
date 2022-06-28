@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { Dispatch, LegacyRef, SetStateAction } from 'react';
 
 export interface IConfigModal {
   isOpen: boolean;
@@ -6,8 +6,9 @@ export interface IConfigModal {
 }
 
 export interface IConfigForm {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  setFormState: Dispatch<SetStateAction<FormState>>;
   formState: FormState;
+  initialRef: LegacyRef<HTMLInputElement>;
 }
 
 export interface FormState {
