@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { ChildrenProps, ReactEvent } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
@@ -24,12 +24,15 @@ function ConfigProvider({ children }: ChildrenProps) {
     resultsDatabaseId: '',
   });
 
-  const onConfigChange = (event: ReactEvent) => {
-    setFormState({
-      ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
+  const onConfigChange = useCallback(
+    (event: ReactEvent) => {
+      setFormState((formState) => ({
+        ...formState,
+        [event.target.name]: event.target.value,
+      }));
+    },
+    [setFormState],
+  );
 
   const actions: ConfigActions = {
     onConfigChange: (event) => onConfigChange(event),
