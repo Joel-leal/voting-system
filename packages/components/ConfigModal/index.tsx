@@ -46,7 +46,7 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
         <ModalBody>
           <ConfigForm onChange={onChangeInput} formState={formState} />
 
-          <Box bgColor={boxBgColor} padding="10px" marginTop="10px">
+          <Box bgColor={boxBgColor} padding="10px" mt="8">
             <Text fontSize="0.8em">
               {' '}
               Caso ainda não tenha estes dados lembre-se de seguir nosso{' '}
@@ -61,7 +61,7 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="red" mr={3} onClick={onClose}>
+          <Button colorScheme="red" mr="3" onClick={onClose}>
             Close
           </Button>
           <Button variant="solid" colorScheme="blue" onClick={onSubmmit}>

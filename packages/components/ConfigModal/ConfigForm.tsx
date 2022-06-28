@@ -15,7 +15,7 @@ export default function ConfigForm({ onChange, formState }: IConfigForm) {
         />
       </FormControl>
 
-      <FormControl mt={4}>
+      <FormControl mt="4">
         <FormLabel fontWeight="bold">Eleições Database Id</FormLabel>
         <Input
           name="electionDatabaseId"
@@ -25,7 +25,7 @@ export default function ConfigForm({ onChange, formState }: IConfigForm) {
         />
       </FormControl>
 
-      <FormControl mt={4}>
+      <FormControl mt="4">
         <FormLabel fontWeight="bold">Resultados Database Id</FormLabel>
         <Input
           name="resultsDatabaseId"

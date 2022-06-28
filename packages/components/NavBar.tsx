@@ -29,7 +29,7 @@ export default function NavBar() {
         maxW="5xl"
         justifyContent="space-between"
       >
-        <Button onClick={onOpen}>
+        <Button onClick={onOpen} colorScheme="blue">
           Configurações Notion <EditIcon paddingLeft="2px" />
         </Button>
 
