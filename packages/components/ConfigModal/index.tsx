@@ -62,7 +62,7 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
 
         <ModalFooter>
           <Button colorScheme="red" mr="3" onClick={onClose}>
-            Close
+            Fechar
           </Button>
           <Button variant="solid" colorScheme="blue" onClick={onSubmmit}>
             Atualizar dados
