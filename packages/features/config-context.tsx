@@ -35,7 +35,7 @@ function ConfigProvider({ children }: ChildrenProps) {
   );
 
   const actions: ConfigActions = {
-    onConfigChange: (event) => onConfigChange(event),
+    onConfigChange,
   };
 
   return (
