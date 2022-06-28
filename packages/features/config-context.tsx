@@ -9,7 +9,6 @@ interface ConfigActions {
 }
 
 interface ConfigStates {
-  readonly notionApiKey: string;
   readonly electionDatabaseId: string;
   readonly resultsDatabaseId: string;
 }
@@ -21,7 +20,6 @@ const [useConfigStates, ConfigStatesProvider] =
 
 function ConfigProvider({ children }: ChildrenProps) {
   const [formState, setFormState] = useState<FormState>({
-    notionApiKey: '',
     electionDatabaseId: '',
     resultsDatabaseId: '',
   });

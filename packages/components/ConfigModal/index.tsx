@@ -12,21 +12,19 @@ import {
   Link,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import ConfigForm from '@packages/components/ConfigModal/ConfigForm';
-import { IConfigModal, FormState } from '@packages/entities/config-modal';
+import { IConfigModal } from '@packages/entities/config-modal';
+import { useConfigStates } from '@packages/features/config-context';
 
 export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
   const initialRef = useRef(null);
+  const formState = useConfigStates();
   const boxBgColor = useColorModeValue('gray.100', 'gray.900');
-  const [formState, setFormState] = useState<FormState>({
-    notionApiKey: '',
-    electionDatabaseId: '',
-    resultsDatabaseId: '',
-  });
 
   const onSubmmit = () => {
+    // TODO(Frattezi): onSubmit should be the localStorage persistence moment
     console.log(formState);
   };
 
@@ -38,11 +36,7 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
         <ModalCloseButton />
 
         <ModalBody>
-          <ConfigForm
-            setFormState={setFormState}
-            formState={formState}
-            initialRef={initialRef}
-          />
+          <ConfigForm initialRef={initialRef} />
 
           <Box bgColor={boxBgColor} padding="10px" mt="8">
             <Text fontSize="0.8em">
