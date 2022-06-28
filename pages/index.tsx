@@ -1,6 +1,8 @@
 import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
 import Head from 'next/head';
 
+import NavBar from '@packages/components/NavBar';
+
 import type { NextPage } from 'next';
 
 const mockElections = [
