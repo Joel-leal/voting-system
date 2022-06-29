@@ -1,19 +1,14 @@
-import { ChangeEvent } from 'react';
 import { FormLabel, Input } from '@chakra-ui/react';
 
+import {
+  useConfigActions,
+  useConfigStates,
+} from '@packages/features/config-context';
 import { IConfigForm } from '@packages/entities/config-modal';
 
-export default function ConfigForm({
-  setFormState,
-  formState,
-  initialRef,
-}: IConfigForm) {
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormState({
-      ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
+export default function ConfigForm({ initialRef }: IConfigForm) {
+  const { onConfigChange } = useConfigActions();
+  const { electionDatabaseId, resultsDatabaseId } = useConfigStates();
 
   return (
     <>
@@ -23,9 +18,9 @@ export default function ConfigForm({
       <Input
         name="electionDatabaseId"
         placeholder="Digite o Id do database de eleições"
-        value={formState.electionDatabaseId}
-        onChange={onChange}
         ref={initialRef}
+        value={electionDatabaseId}
+        onChange={onConfigChange}
       />
 
       <FormLabel fontWeight="bold" mt="4">
@@ -34,8 +29,8 @@ export default function ConfigForm({
       <Input
         name="resultsDatabaseId"
         placeholder="Digite o Id do database de resultados"
-        value={formState.resultsDatabaseId}
-        onChange={onChange}
+        value={resultsDatabaseId}
+        onChange={onConfigChange}
       />
     </>
   );

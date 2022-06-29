@@ -1,4 +1,4 @@
-import { Dispatch, LegacyRef, SetStateAction } from 'react';
+import { LegacyRef } from 'react';
 
 export interface IConfigModal {
   isOpen: boolean;
@@ -6,13 +6,10 @@ export interface IConfigModal {
 }
 
 export interface IConfigForm {
-  setFormState: Dispatch<SetStateAction<FormState>>;
-  formState: FormState;
   initialRef: LegacyRef<HTMLInputElement>;
 }
 
 export interface FormState {
-  notionApiKey: string;
   electionDatabaseId: string;
   resultsDatabaseId: string;
 }
