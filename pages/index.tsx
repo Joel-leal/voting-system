@@ -20,35 +20,40 @@ const mockElections = [
 
 const Home: NextPage = () => {
   return (
-    <Flex h="100vh" w="100vw" alignItems="center" justifyContent="center">
-      <Box>
-        <Head>
-          <title>Eleições 2022</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main>
-          <Heading as="h1" size="2xl">
-            Selecione uma votação{' '}
-          </Heading>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            width="100%"
-            py="30px"
-          >
-            <Select>
-              {mockElections.map((voting) => (
-                <option key={voting.electionName}>{voting.electionName}</option>
-              ))}
-            </Select>
-            <Button colorScheme="blue" marginLeft="10px">
-              Iniciar Votação
-            </Button>
-          </Box>
-        </main>
-      </Box>
-    </Flex>
+    <>
+      <NavBar />
+      <Flex h="80vh" w="100vw" alignItems="center" justifyContent="center">
+        <Box>
+          <Head>
+            <title>Eleições 2022</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <main>
+            <Heading as="h1" size="2xl">
+              Selecione uma votação{' '}
+            </Heading>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
+              py="30px"
+            >
+              <Select>
+                {mockElections.map((voting) => (
+                  <option key={voting.electionName}>
+                    {voting.electionName}
+                  </option>
+                ))}
+              </Select>
+              <Button colorScheme="blue" marginLeft="10px">
+                Iniciar Votação
+              </Button>
+            </Box>
+          </main>
+        </Box>
+      </Flex>
+    </>
   );
 };
 
