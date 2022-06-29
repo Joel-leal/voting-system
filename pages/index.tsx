@@ -1,33 +1,52 @@
+import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
 import Head from 'next/head';
-import { Heading, Link, Text, Box } from '@chakra-ui/react';
 
 import type { NextPage } from 'next';
 
+const listElection = [
+  {
+    electionId: '47b8e344-0243-435d-822b-4192f691f5a7',
+    electionName: 'Dimensão colégio - 06',
+    keyPosition: 'Chefe de turma',
+  },
+  {
+    electionId: '58ebc9cd-5a4d-4902-876c-95008a537657',
+    electionName: 'Dimensão colégio - 07',
+    keyPosition: 'Chefe de turma',
+  },
+];
+
 const Home: NextPage = () => {
   return (
-    <Box>
-      <Head>
-        <title>Creating App of Voting</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <Heading as="h1" size="2xl" mb="2">
-          Welcome to{' '}
-          <Link color="teal.500" href="https://nextjs.org">
-            Voting-System!
-          </Link>
-        </Heading>
-        <Text>
-          This is another a project podCodar{' '}
-          <Link
-            color="#8e407a"
-            href="https://www.notion.so/podcodar/VS-42132534db42406e9e9fe1e6defa0ab9"
+    <Flex h="100vh" w="100vw" alignItems="center" justifyContent="center">
+      <Box>
+        <Head>
+          <title>Eleições 2022</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <main>
+          <Heading as="h1" size="2xl">
+            Selecione uma votação{' '}
+          </Heading>
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+            py="30px"
           >
-            Wiki.
-          </Link>
-        </Text>
-      </main>
-    </Box>
+            <Select>
+              {listElection.map((voting) => (
+                <option key={voting.electionName}>{voting.electionName}</option>
+              ))}
+            </Select>
+            <Button colorScheme="blue" marginLeft="10px">
+              Iniciar Votação
+            </Button>
+          </Box>
+        </main>
+      </Box>
+    </Flex>
   );
 };
 
