@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             alignItems="center"
             justifyContent="center"
             width="100%"
-            py="10px"
+            py="30px"
           >
             <Select>
               {listElection.map((voting) => (
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
               ))}
             </Select>
             <Button colorScheme="blue" marginLeft="10px">
-              Buscar
+              Iniciar
             </Button>
           </Box>
         </main>
