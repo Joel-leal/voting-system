@@ -3,6 +3,19 @@ import Head from 'next/head';
 
 import type { NextPage } from 'next';
 
+const listElection = [
+  {
+    electionId: '47b8e344-0243-435d-822b-4192f691f5a7',
+    electionName: 'Dimensão colégio - 06',
+    keyPosition: 'Chefe de turma',
+  },
+  {
+    electionId: '58ebc9cd-5a4d-4902-876c-95008a537657',
+    electionName: 'Dimensão colégio - 07',
+    keyPosition: 'Chefe de turma',
+  },
+];
+
 const Home: NextPage = () => {
   return (
     <Flex h="100vh" w="100vw" alignItems="center" justifyContent="center">
@@ -23,10 +36,9 @@ const Home: NextPage = () => {
             py="10px"
           >
             <Select>
-              <option value="sexto-ano">Sexto-ano</option>
-              <option value="setimo-ano">Sétimo-ano</option>
-              <option value="oitavo-ano">Oitavo-ano</option>
-              <option value="nono-ano">Nono-ano</option>
+              {listElection.map((voting) => (
+                <option key={voting.electionName}>{voting.electionName}</option>
+              ))}
             </Select>
             <Button colorScheme="blue" marginLeft="10px">
               Buscar
