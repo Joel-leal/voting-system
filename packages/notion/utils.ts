@@ -47,6 +47,7 @@ export function extractPagesFromQuery(pages: Result[]) {
     const pageProperties = _extractProperties(page);
     return {
       electionId: page?.id,
+      position: pageProperties?.Cargo,
       electionName: pageProperties?.Name,
       partySlug: pageProperties?.Sigla,
       candidateName: pageProperties?.Candidato,
