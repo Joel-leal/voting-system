@@ -1,9 +1,11 @@
 import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
 import Head from 'next/head';
 
+import NavBar from '@packages/components/NavBar';
+
 import type { NextPage } from 'next';
 
-const listElection = [
+const mockElections = [
   {
     electionId: '47b8e344-0243-435d-822b-4192f691f5a7',
     electionName: 'Dimensão colégio - 06',
@@ -18,35 +20,40 @@ const listElection = [
 
 const Home: NextPage = () => {
   return (
-    <Flex h="100vh" w="100vw" alignItems="center" justifyContent="center">
-      <Box>
-        <Head>
-          <title>Eleições 2022</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <main>
-          <Heading as="h1" size="2xl">
-            Selecione uma votação{' '}
-          </Heading>
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            width="100%"
-            py="30px"
-          >
-            <Select>
-              {listElection.map((voting) => (
-                <option key={voting.electionName}>{voting.electionName}</option>
-              ))}
-            </Select>
-            <Button colorScheme="blue" marginLeft="10px">
-              Iniciar Votação
-            </Button>
-          </Box>
-        </main>
-      </Box>
-    </Flex>
+    <>
+      <NavBar />
+      <Flex h="80vh" w="100vw" alignItems="center" justifyContent="center">
+        <Box>
+          <Head>
+            <title>Eleições 2022</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
+          <main>
+            <Heading as="h1" size="2xl">
+              Selecione uma votação{' '}
+            </Heading>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              width="100%"
+              py="30px"
+            >
+              <Select>
+                {mockElections.map((voting) => (
+                  <option key={voting.electionName}>
+                    {voting.electionName}
+                  </option>
+                ))}
+              </Select>
+              <Button colorScheme="blue" marginLeft="10px">
+                Iniciar Votação
+              </Button>
+            </Box>
+          </main>
+        </Box>
+      </Flex>
+    </>
   );
 };
 
