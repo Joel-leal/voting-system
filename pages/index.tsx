@@ -41,7 +41,7 @@ const Home: NextPage = () => {
               ))}
             </Select>
             <Button colorScheme="blue" marginLeft="10px">
-              Iniciar
+              Iniciar Votação
             </Button>
           </Box>
         </main>
