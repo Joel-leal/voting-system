@@ -17,15 +17,6 @@ export default function ConfigForm({
 
   return (
     <>
-      <FormLabel fontWeight="bold">Notion API Key</FormLabel>
-      <Input
-        name="notionApiKey"
-        placeholder="Sua chave de integração Notion"
-        value={formState.notionApiKey}
-        onChange={onChange}
-        ref={initialRef}
-      />
-
       <FormLabel fontWeight="bold" mt="4">
         Eleições Database Id
       </FormLabel>
@@ -34,6 +25,7 @@ export default function ConfigForm({
         placeholder="Digite o Id do database de eleições"
         value={formState.electionDatabaseId}
         onChange={onChange}
+        ref={initialRef}
       />
 
       <FormLabel fontWeight="bold" mt="4">
