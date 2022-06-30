@@ -11,6 +11,7 @@ import {
   Text,
   Link,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
 
@@ -22,10 +23,12 @@ import {
 } from '@packages/features/config-context';
 import {
   getConfiguration,
-  persistConfiguration,
+  putConfiguration,
 } from '@packages/repository/indexedDb';
+import { updateConfigurationSuccess } from '@packages/utils/toast-configs';
 
 export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
+  const toast = useToast();
   const initialRef = useRef(null);
   const formState = useConfigStates();
   const { updateConfiguration } = useConfigActions();
@@ -39,7 +42,8 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
   };
 
   const onSubmmit = async () => {
-    await persistConfiguration(formState);
+    await putConfiguration(formState);
+    toast(updateConfigurationSuccess);
     onClose();
   };
 
