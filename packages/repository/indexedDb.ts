@@ -1,6 +1,11 @@
 import Dexie, { Table } from 'dexie';
 
 import { ConfigStates } from '@packages/features/config-context';
+import { IConfig, IVotes } from '@packages/entities/indexedDb';
+import {
+  configContextToPersistence,
+  configPersistenceToContext,
+} from '@packages/utils/transformers';
 
 export default class VSDatabase extends Dexie {
   configuration!: Table<IConfig, string>;
@@ -16,41 +21,22 @@ export default class VSDatabase extends Dexie {
   }
 }
 
-export interface IConfig {
-  name: string;
-  value: string;
-}
-
-interface IVotes {
-  id: number;
-  code: number;
-  electionId: string;
-}
-
 const db = new VSDatabase();
 
 export async function getConfiguration(): Promise<ConfigStates> {
-  const [electionDatabaseId, resultsDatabaseId] =
-    await db.configuration.bulkGet(['electionDatabaseId', 'resultsDatabaseId']);
+  const getResult = await db.configuration.bulkGet([
+    'electionDatabaseId',
+    'resultsDatabaseId',
+  ]);
 
-  const result = {
-    electionDatabaseId: electionDatabaseId?.value || '',
-    resultsDatabaseId: resultsDatabaseId?.value || '',
-  };
-
+  const result = configContextToPersistence(getResult);
   return result;
 }
 
-export async function persistConfiguration(
+export async function putConfiguration(
   configuration: ConfigStates,
 ): Promise<void> {
-  const updateData = Object.entries(configuration).map(
-    ([key, value]) =>
-      ({
-        name: key,
-        value: value,
-      } as IConfig),
-  );
+  const updateData = configPersistenceToContext(configuration);
 
   await db.configuration.bulkPut(updateData);
 }
