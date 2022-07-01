@@ -2,7 +2,7 @@ import { Flex, Grid } from '@chakra-ui/react';
 
 // const listCandidate = ['1 colocado', '2 colocado', '3 colocado'];
 
-export default function Display() {
+export default function ResultData() {
   return (
     <Grid
       templateColumns="3fr"
