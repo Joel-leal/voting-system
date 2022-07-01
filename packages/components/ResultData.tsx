@@ -1,5 +1,7 @@
 import { Flex, Grid } from '@chakra-ui/react';
 
+import ResultCard from './resultCard';
+
 // const listCandidate = ['1 colocado', '2 colocado', '3 colocado'];
 
 export default function ResultData() {
@@ -11,25 +13,29 @@ export default function ResultData() {
       alignSelf="center"
       justifyContent="center"
     >
-      {/* {listCandidate.map((position) => {
-        <Flex bg="#FED7D7" h="100%" justifyContent="center" alignItems="center">
-          {position}
-        </Flex>;
-      })} */}
-      <Flex
-        bg="#FED7D7"
-        w="50vw"
-        h="100%"
-        justifyContent="center"
-        alignItems="center"
-      >
-        1 Colocado
+      <Flex bg="#FED7D7" w="50vw" h="100%" alignItems="center">
+        <Flex
+          bg="#FEFCBF"
+          w="20%"
+          h="100%"
+          alignItems="center"
+          justifyContent="center"
+        >
+          1
+        </Flex>
+        <ResultCard />
       </Flex>
-      <Flex bg="#FEFCBF" h="100%" justifyContent="center" alignItems="center">
-        2 Colocado
-      </Flex>
-      <Flex bg="#FED7D7" h="100%" justifyContent="center" alignItems="center">
-        3 Colocado
+      <Flex bg="#FED7D7" w="50vw" h="100%" alignItems="center">
+        <Flex
+          bg="#FEFCBF"
+          w="20%"
+          h="100%"
+          alignItems="center"
+          justifyContent="center"
+        >
+          2
+        </Flex>
+        <ResultCard />
       </Flex>
     </Grid>
   );
