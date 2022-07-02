@@ -1,18 +1,18 @@
-import { Grid, Text } from '@chakra-ui/react';
+import { Box, Text } from '@chakra-ui/react';
 
-import ResulData from '@packages/components/ResultData';
+import ResultDisplay from '@packages/components/ResultDisplay';
 
 import type { NextPage } from 'next';
 
 const ResultPage: NextPage = () => {
   return (
-    <Grid h="100vh" w="100vw" justifyContent="center">
-      <Text fontSize="30px" textAlign="center" marginTop="100px">
+    <Box h="100vh" w="100vw" justifyContent="center" alignItems="center">
+      <Text fontSize="30px" textAlign="center" py="3rem">
         {' '}
         Resultado da Votação
       </Text>
-      <ResulData />
-    </Grid>
+      <ResultDisplay />
+    </Box>
   );
 };
 
