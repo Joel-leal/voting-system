@@ -4,7 +4,7 @@ export interface GetAvaiableElectionsResponse {
   message: string;
 }
 
-interface AvaiableElections {
+export interface AvaiableElections {
   electionId: string;
   electionName: string;
 }

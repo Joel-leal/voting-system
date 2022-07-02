@@ -1,7 +1,10 @@
+import { useEffect } from 'react';
 import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
 import Head from 'next/head';
 
 import NavBar from '@packages/components/NavBar';
+import { electionsApi } from '@packages/hooks/api';
+import { useConfigStates } from '@packages/features/config-context';
 
 import type { NextPage } from 'next';
 
@@ -19,6 +22,19 @@ const mockElections = [
 ];
 
 const Home: NextPage = () => {
+  const { electionDatabaseId } = useConfigStates();
+
+  useEffect(() => {
+    async function fetchData() {
+      if (electionDatabaseId) {
+        const result = await electionsApi.get(electionDatabaseId);
+        console.log(result);
+      }
+    }
+
+    fetchData();
+  }, [electionDatabaseId]);
+
   return (
     <>
       <NavBar />
