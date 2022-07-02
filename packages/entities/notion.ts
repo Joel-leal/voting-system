@@ -7,6 +7,7 @@ export interface GetAvaiableElectionsResponse {
 export interface AvaiableElections {
   electionId: string;
   electionName: string;
+  position: string;
 }
 
 export interface GetElectionPageResponse {

@@ -1,10 +1,10 @@
-import { AvaiableElections } from '@packages/entities/notion';
+import { GetAvaiableElectionsResponse } from '@packages/entities/notion';
 
 const MEMBERS_URL = (databaseId: string) =>
   `/api/elections?databaseId=${databaseId}`;
 export const electionsApi = {
   get: async (databaseId: string) =>
-    fetchData<AvaiableElections[]>(MEMBERS_URL(databaseId), {
+    fetchData<GetAvaiableElectionsResponse>(MEMBERS_URL(databaseId), {
       method: 'GET',
     }),
 };
