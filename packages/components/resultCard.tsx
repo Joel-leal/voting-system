@@ -5,36 +5,24 @@ import type { NextPage } from 'next';
 const ResultCard: NextPage = () => {
   return (
     <>
-      <Box
-        display="flex"
-        flexDirection="column"
-        mx="50px"
-        justifyContent="center"
-      >
+      <Box display="flex" flexDirection="column" width="50vw" px="2rem">
         <Flex>
           <Box>
-            <Avatar src="https://bit.ly/sage-adebayo" />
+            <Avatar src="" />
           </Box>
-          <Box ml="3">
+          <Box mx="0.5rem">
             <Text fontWeight="bold">name candidato</Text>
-            <Text fontSize="sm">Candidate</Text>
+            <Text fontSize="sm">name vice</Text>
           </Box>
         </Flex>
-        <Flex>
-          <Box>
-            <Avatar src="https://bit.ly/sage-adebayo" />
-          </Box>
-          <Box ml="3">
-            <Text fontWeight="bold">name Vice</Text>
-            <Text fontSize="sm">Vice</Text>
-          </Box>
-        </Flex>
-        <Box>
-          <Text py="30px">Partido:</Text>
+        <Box py=".5rem">
+          <Text>
+            <b>Partido: </b>Xablau
+          </Text>
         </Box>
       </Box>
-      <Box>
-        <Text px="50px" fontSize="30px">
+      <Box display="flex" justifyContent="end" width="100%">
+        <Text fontSize="20px" px="2rem">
           56%
         </Text>
       </Box>
