@@ -1,6 +1,7 @@
 import { EffectCallback, FC, ReactNode, useEffect, ChangeEvent } from 'react';
 
 export type ReactEvent = ChangeEvent<HTMLInputElement>;
+export type ReactSelectEvent = ChangeEvent<HTMLSelectElement>;
 
 export interface ChildrenProps {
   readonly children: ReactNode;
