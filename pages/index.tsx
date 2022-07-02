@@ -1,39 +1,44 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
 import Head from 'next/head';
 
 import NavBar from '@packages/components/NavBar';
 import { electionsApi } from '@packages/hooks/api';
+import { AvaiableElections } from '@packages/entities/notion';
 import { useConfigStates } from '@packages/features/config-context';
+import { ReactSelectEvent } from '@packages/utils/react';
 
 import type { NextPage } from 'next';
 
-const mockElections = [
-  {
-    electionId: '47b8e344-0243-435d-822b-4192f691f5a7',
-    electionName: 'Dimensão colégio - 06',
-    keyPosition: 'Chefe de turma',
-  },
-  {
-    electionId: '58ebc9cd-5a4d-4902-876c-95008a537657',
-    electionName: 'Dimensão colégio - 07',
-    keyPosition: 'Chefe de turma',
-  },
-];
-
 const Home: NextPage = () => {
   const { electionDatabaseId } = useConfigStates();
+  const [selectedElectionId, setSelectedElectionId] = useState<string>('');
+  const [avaiableElections, setAvaiableElections] = useState<
+    AvaiableElections[]
+  >([]);
 
   useEffect(() => {
     async function fetchData() {
       if (electionDatabaseId) {
         const result = await electionsApi.get(electionDatabaseId);
-        console.log(result);
+        setAvaiableElections(result.results || []);
       }
     }
 
     fetchData();
   }, [electionDatabaseId]);
+
+  const handleSelectChage = (event: ReactSelectEvent) => {
+    setSelectedElectionId(event?.target?.value);
+  };
+
+  const onSubmit = () => {
+    console.log(selectedElection);
+  };
+
+  const [selectedElection] = avaiableElections?.filter(
+    (election) => election.electionId === selectedElectionId,
+  );
 
   return (
     <>
@@ -55,14 +60,19 @@ const Home: NextPage = () => {
               width="100%"
               py="30px"
             >
-              <Select>
-                {mockElections.map((voting) => (
-                  <option key={voting.electionName}>
-                    {voting.electionName}
-                  </option>
-                ))}
+              <Select
+                placeholder="Selecione uma eleição"
+                onChange={handleSelectChage}
+              >
+                {avaiableElections &&
+                  avaiableElections.map((voting) => (
+                    <option key={voting.electionId} value={voting.electionId}>
+                      {voting.electionName} - {voting.position}
+                    </option>
+                  ))}
               </Select>
-              <Button colorScheme="blue" marginLeft="10px">
+
+              <Button colorScheme="blue" marginLeft="10px" onClick={onSubmit}>
                 Iniciar Votação
               </Button>
             </Box>
