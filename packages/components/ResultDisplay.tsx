@@ -1,6 +1,6 @@
 import { Flex, Grid } from '@chakra-ui/react';
 
-import ResultCard from './resultCard';
+import ResultCard from './ResultCard';
 
 const positions = ['candidate1', 'candidate2', 'candidate3'];
 
