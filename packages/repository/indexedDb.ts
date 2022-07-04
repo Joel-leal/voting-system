@@ -21,7 +21,7 @@ export default class VSDatabase extends Dexie {
   }
 }
 
-const db = new VSDatabase();
+export const db = new VSDatabase();
 
 export async function getConfiguration(): Promise<ConfigStates> {
   const getResult = await db.configuration.bulkGet([

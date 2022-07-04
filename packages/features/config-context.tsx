@@ -1,9 +1,10 @@
+import { useLiveQuery } from 'dexie-react-hooks';
 import { useCallback, useEffect, useState } from 'react';
 
 import { ChildrenProps, ReactEvent } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
 import { FormState } from '@packages/entities/config-modal';
-import { getConfiguration } from '@packages/repository/indexedDb';
+import { db, getConfiguration } from '@packages/repository/indexedDb';
 
 const defaultInitialState = {
   electionDatabaseId: '',
@@ -35,6 +36,18 @@ function ConfigProvider({ children }: ChildrenProps) {
 
     loadInitialState();
   }, []);
+
+  const configuration = useLiveQuery(
+    async () =>
+      await db.configuration.bulkGet([
+        'electionDatabaseId',
+        'resultsDatabaseId',
+      ]),
+  );
+
+  useEffect(() => {
+    console.log(configuration);
+  }, [configuration]);
 
   const [formState, setFormState] = useState<FormState>(defaultInitialState);
 
