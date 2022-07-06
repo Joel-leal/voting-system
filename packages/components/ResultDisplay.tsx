@@ -1,7 +1,5 @@
 import { Flex, Grid } from '@chakra-ui/react';
 
-import ResultCard from './ResultCard';
-
 const positions = ['candidate1', 'candidate2', 'candidate3'];
 
 export default function ResultDisplay() {
@@ -24,7 +22,6 @@ export default function ResultDisplay() {
           >
             {index + 1}
           </Flex>
-          <ResultCard />
         </Flex>
       ))}
     </Grid>
