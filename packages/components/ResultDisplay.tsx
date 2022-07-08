@@ -1,28 +1,54 @@
-import { Flex, Grid } from '@chakra-ui/react';
+import { Box, Grid, Text } from '@chakra-ui/react';
 
-const positions = ['candidate1', 'candidate2', 'candidate3'];
-
+const positions = [
+  {
+    candidate: 'Daniel Menezes',
+    vice: 'Joel Morais',
+    partido: 'PCdoB',
+    porcentagem: '55%',
+    votos: '550',
+  },
+  {
+    candidate: 'Gabriel Amarante',
+    vice: 'Érica Poline',
+    partido: 'PT',
+    porcentagem: '10%',
+    votos: '100',
+  },
+  {
+    candidate: 'Lucas Moreira',
+    vice: 'Raquel',
+    partido: 'Psol',
+    porcentagem: '35%',
+    votos: '350',
+  },
+];
 export default function ResultDisplay() {
   return (
     <Grid h="50vh" w="100wh" alignSelf="center" justifyContent="center">
-      {positions.map((candidate, index) => (
-        <Flex
-          bg="#FED7D7"
+      {positions.map((candidates, index) => (
+        <Box
+          bg="white"
           w="50vw"
+          boxShadow="base"
           h="80%"
           alignItems="center"
-          key={candidate[index]}
+          key={candidates.candidate}
         >
-          <Flex
-            bg="#FEFCBF"
+          <Box
+            display="flex"
+            bg="while
+            "
             w="20%"
             h="100%"
             alignItems="center"
             justifyContent="center"
           >
-            {index + 1}
-          </Flex>
-        </Flex>
+            <Text color="#A2B5CD" textShadow="2px 1px #CAE1FF" fontSize="25px">
+              {index + 1}
+            </Text>
+          </Box>
+        </Box>
       ))}
     </Grid>
   );
