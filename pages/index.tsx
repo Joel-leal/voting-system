@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Heading, Box, Flex, Select, Button } from '@chakra-ui/react';
+import {
+  Heading,
+  Box,
+  Flex,
+  Select,
+  Button,
+  Alert,
+  AlertIcon,
+} from '@chakra-ui/react';
 import Head from 'next/head';
 
 import NavBar from '@packages/components/NavBar';
@@ -21,7 +29,7 @@ const Home: NextPage = () => {
     async function fetchData() {
       if (electionDatabaseId) {
         const result = await electionsApi.get(electionDatabaseId);
-        setAvaiableElections(result.results || []);
+        setAvaiableElections(result?.results || []);
       }
     }
 
@@ -76,6 +84,12 @@ const Home: NextPage = () => {
                 Iniciar Votação
               </Button>
             </Box>
+            {!avaiableElections.length && (
+              <Alert status="warning" bottom="0">
+                <AlertIcon />
+                Nenhuma eleição encontrada, verifique suas chaves do notion!
+              </Alert>
+            )}
           </main>
         </Box>
       </Flex>

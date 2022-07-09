@@ -12,7 +12,7 @@ export const electionsApi = {
 async function fetchData<T>(
   input: RequestInfo,
   init?: RequestInit | undefined,
-): Promise<T> {
+): Promise<T | undefined> {
   const res = await fetch(input, {
     ...init,
     headers: {
@@ -22,7 +22,10 @@ async function fetchData<T>(
   });
 
   // validate response
-  if (!res.ok) throw Error(`${res.status}: ${res.statusText}`);
+  if (!res.ok) {
+    console.warn(`${res.status}: ${res.statusText}`);
+    return;
+  }
 
   return await res.json();
 }
