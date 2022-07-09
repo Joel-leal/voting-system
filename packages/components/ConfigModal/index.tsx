@@ -11,25 +11,49 @@ import {
   Text,
   Link,
   useColorModeValue,
+  useToast,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
 
 import ConfigForm from '@packages/components/ConfigModal/ConfigForm';
 import { IConfigModal } from '@packages/entities/config-modal';
-import { useConfigStates } from '@packages/features/config-context';
+import {
+  useConfigActions,
+  useConfigStates,
+} from '@packages/features/config-context';
+import {
+  getConfiguration,
+  putConfiguration,
+} from '@packages/repository/indexedDb';
+import { updateConfigurationSuccess } from '@packages/utils/toast-configs';
 
 export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
+  const toast = useToast();
   const initialRef = useRef(null);
   const formState = useConfigStates();
+  const { updateConfiguration } = useConfigActions();
   const boxBgColor = useColorModeValue('gray.100', 'gray.900');
 
-  const onSubmmit = () => {
-    // TODO(Frattezi): onSubmit should be the localStorage persistence moment
-    console.log(formState);
+  const updateContext = async () => {
+    const persistedConfig = await getConfiguration();
+    if (persistedConfig != formState) {
+      updateConfiguration(persistedConfig);
+    }
+  };
+
+  const onSubmmit = async () => {
+    await putConfiguration(formState);
+    toast(updateConfigurationSuccess);
+    onClose();
+  };
+
+  const onCloseModal = async () => {
+    await updateContext();
+    onClose();
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} initialFocusRef={initialRef}>
+    <Modal isOpen={isOpen} onClose={onCloseModal} initialFocusRef={initialRef}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Adicione suas chaves do notion</ModalHeader>
@@ -53,7 +77,7 @@ export default function ConfigModal({ isOpen, onClose }: IConfigModal) {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="red" mr="3" onClick={onClose}>
+          <Button colorScheme="red" mr="3" onClick={onCloseModal}>
             Fechar
           </Button>
           <Button variant="solid" colorScheme="blue" onClick={onSubmmit}>

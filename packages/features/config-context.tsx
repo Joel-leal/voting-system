@@ -1,14 +1,21 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { ChildrenProps, ReactEvent } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
 import { FormState } from '@packages/entities/config-modal';
+import { getConfiguration } from '@packages/repository/indexedDb';
+
+const defaultInitialState = {
+  electionDatabaseId: '',
+  resultsDatabaseId: '',
+};
 
 interface ConfigActions {
   readonly onConfigChange: (event: ReactEvent) => void;
+  readonly updateConfiguration: (payload: ConfigStates) => void;
 }
 
-interface ConfigStates {
+export interface ConfigStates {
   readonly electionDatabaseId: string;
   readonly resultsDatabaseId: string;
 }
@@ -19,10 +26,17 @@ const [useConfigStates, ConfigStatesProvider] =
   createCtx<ConfigStates>('ConfigStatesCtx');
 
 function ConfigProvider({ children }: ChildrenProps) {
-  const [formState, setFormState] = useState<FormState>({
-    electionDatabaseId: '',
-    resultsDatabaseId: '',
-  });
+  useEffect(() => {
+    async function loadInitialState() {
+      const persistedInitialState = await getConfiguration();
+      const initialState = persistedInitialState || defaultInitialState;
+      setFormState(initialState);
+    }
+
+    loadInitialState();
+  }, []);
+
+  const [formState, setFormState] = useState<FormState>(defaultInitialState);
 
   const onConfigChange = useCallback(
     (event: ReactEvent) => {
@@ -34,8 +48,16 @@ function ConfigProvider({ children }: ChildrenProps) {
     [setFormState],
   );
 
+  const updateConfiguration = useCallback(
+    (payload: ConfigStates) => {
+      setFormState(payload);
+    },
+    [setFormState],
+  );
+
   const actions: ConfigActions = {
     onConfigChange,
+    updateConfiguration,
   };
 
   return (
