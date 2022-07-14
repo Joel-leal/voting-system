@@ -1,4 +1,4 @@
-import { Box, Grid, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 const positions = [
   {
@@ -25,7 +25,13 @@ const positions = [
 ];
 export default function ResultDisplay() {
   return (
-    <Grid h="50vh" w="100wh" alignSelf="center" justifyContent="center">
+    <Flex
+      h="50vh"
+      w="100wh"
+      alignSelf="center"
+      justifyContent="center"
+      direction="column"
+    >
       {positions.map((candidates, index) => (
         <Box
           bg="white"
@@ -33,6 +39,7 @@ export default function ResultDisplay() {
           boxShadow="base"
           h="80%"
           alignItems="center"
+          margin="0.5rem"
           key={candidates.candidate}
         >
           <Box
@@ -50,6 +57,6 @@ export default function ResultDisplay() {
           </Box>
         </Box>
       ))}
-    </Grid>
+    </Flex>
   );
 }

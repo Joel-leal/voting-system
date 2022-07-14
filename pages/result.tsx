@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 
 import ResultDisplay from '@packages/components/ResultDisplay';
 
@@ -6,7 +6,13 @@ import type { NextPage } from 'next';
 
 const ResultPage: NextPage = () => {
   return (
-    <Box h="100vh" w="100vw" justifyContent="center" alignItems="center">
+    <Flex
+      h="100vh"
+      w="100vw"
+      justifyContent="center"
+      alignItems="center"
+      direction="column"
+    >
       <Text
         fontSize="30px"
         textAlign="center"
@@ -18,7 +24,7 @@ const ResultPage: NextPage = () => {
         Resultado da Votação
       </Text>
       <ResultDisplay />
-    </Box>
+    </Flex>
   );
 };
 
