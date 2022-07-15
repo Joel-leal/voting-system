@@ -3,10 +3,10 @@ import { Box, Text } from '@chakra-ui/react';
 interface IPartyInfo {
   candidate?: string;
   vice?: string;
-  partido?: string;
+  party?: string;
 }
 
-export default function PartyInfo({ candidate, vice, partido }: IPartyInfo) {
+export default function PartyInfo({ candidate, vice, party }: IPartyInfo) {
   return (
     <Box
       display="flex"
@@ -30,7 +30,7 @@ export default function PartyInfo({ candidate, vice, partido }: IPartyInfo) {
       </Box>
       <Box display="flex" py="5px">
         <Text fontWeight="bold" fontSize="20px">
-          Partido: {partido}
+          Partido: {party}
         </Text>
       </Box>
     </Box>
