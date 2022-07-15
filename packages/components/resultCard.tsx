@@ -1,33 +1,51 @@
 import { Flex, Box, Avatar, Text } from '@chakra-ui/react';
 
-import type { NextPage } from 'next';
+interface Electionesult {
+  candidate: string;
+  vice: string;
+  party: string;
+  percentagem: string;
+  votos: string;
+}
 
-const ResultCard: NextPage = () => {
+function ResultCard({
+  candidate,
+  vice,
+  party,
+  percentagem,
+  votos,
+}: Electionesult) {
   return (
-    <>
-      <Box display="flex" flexDirection="column" width="50vw" px="2rem">
+    <Flex flexDirection="row" w="60vw">
+      <Box w="40vw">
         <Flex>
           <Box>
             <Avatar src="" />
           </Box>
-          <Box mx="0.5rem">
-            <Text fontWeight="bold">name candidato</Text>
-            <Text fontSize="sm">name vice</Text>
+          <Box px="0.4rem">
+            <Text fontWeight="bold">Candidato: {candidate}</Text>
+            <Text fontSize="sm">Vice: {vice}</Text>
           </Box>
         </Flex>
         <Box py=".5rem">
           <Text>
-            <b>Partido: </b>Xablau
+            <b>Partido: </b>
+            {party}
           </Text>
         </Box>
       </Box>
-      <Box display="flex" justifyContent="end" width="100%">
-        <Text fontSize="20px" px="2rem">
-          56%
+      <Flex justifyContent="center" flexDirection="column">
+        <Text fontSize="15px">
+          {' '}
+          Percentagem votos válidos: <b>{percentagem}</b>
         </Text>
-      </Box>
-    </>
+        <Text fontSize="15px">
+          {' '}
+          Número total de votos: <b>{votos}</b>
+        </Text>
+      </Flex>
+    </Flex>
   );
-};
+}
 
 export default ResultCard;
