@@ -1,4 +1,6 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Center, Divider, Flex, Text } from '@chakra-ui/react';
+
+import ResultCard from '@packages/components/ResultCard';
 
 const positions = [
   {
@@ -26,36 +28,30 @@ const positions = [
 export default function ResultDisplay() {
   return (
     <Flex
-      h="50vh"
-      w="100wh"
+      w="70wh"
       alignSelf="center"
       justifyContent="center"
       direction="column"
+      gap="2rem"
     >
-      {positions.map((candidates, index) => (
-        <Box
-          bg="white"
-          w="50vw"
-          boxShadow="base"
-          h="80%"
-          alignItems="center"
-          margin="0.5rem"
-          key={candidates.candidate}
-        >
-          <Box
-            display="flex"
-            bg="while
-            "
-            w="20%"
-            h="100%"
-            alignItems="center"
-            justifyContent="center"
-          >
+      {positions.map((party, index) => (
+        <Flex boxShadow="base" alignItems="center" key={party.candidate}>
+          <Center padding="2rem">
             <Text color="#A2B5CD" textShadow="2px 1px #CAE1FF" fontSize="25px">
               {index + 1}
             </Text>
-          </Box>
-        </Box>
+          </Center>
+          <Divider orientation="vertical" p="0 1rem" />
+          <Center paddingRight="2rem">
+            <ResultCard
+              candidate={party.candidate}
+              vice={party.vice}
+              party={party.partido}
+              percentagem={party.porcentagem}
+              votos={party.votos}
+            />
+          </Center>
+        </Flex>
       ))}
     </Flex>
   );
