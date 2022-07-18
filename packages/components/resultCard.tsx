@@ -37,7 +37,7 @@ function ResultCard({
       <Flex justifyContent="center" flexDirection="column">
         <Text fontSize="15px">
           {' '}
-          Percentagem votos válidos: <b>{percentagem}</b>
+          Percentagem dos votos válidos: <b>{percentagem}</b>
         </Text>
         <Text fontSize="15px">
           {' '}
