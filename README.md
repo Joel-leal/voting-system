@@ -1,5 +1,7 @@
 # Voting System
 
+Projeto migrado para repositório da podCodar. 
+
 This project has the objective to emulate a Brazilian automated electoral system. It uses [Notion](https://www.notion.so/) databases
 as a way for the user to create new elections and also to store election results.
 
